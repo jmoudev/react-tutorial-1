@@ -1,25 +1,35 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
-export const useAgeForm = callback => {
-  const [displayAge, setDisplayAge] = useState(0);
-  const [age, setAge] = useState(0);
+export const useAgeForm = () => {
+  const [userInfo, setUserInfo] = useState({
+    displayAge: 0,
+    age: 0,
+    name: ''
+  });
 
-  // manage click event
-  const handleClick = e => {
-    e.preventDefault();
-    setAge(e.target.form[0].value);
-    setDisplayAge(0);
+  const changeAge = e => {
+    const displayAge = e.target.value;
+
+    setUserInfo(prevState => ({ ...prevState, displayAge }));
   };
 
-  // manage change event
-  const handleChange = e => {
-    setDisplayAge(e.target.value);
+  const recordName = e => {
+    const name = e.target.innerText;
+
+    setUserInfo(prevState => ({ ...prevState, name }));
+  };
+
+  const recordAge = e => {
+    e.preventDefault();
+    const age = e.target.form[0].value;
+
+    setUserInfo(prevState => ({ ...prevState, age, displayAge: 0 }));
   };
 
   return {
-    displayAge,
-    age,
-    handleClick,
-    handleChange
+    userInfo,
+    changeAge,
+    recordName,
+    recordAge
   };
 };
