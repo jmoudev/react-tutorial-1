@@ -8,7 +8,7 @@ export default function Example1() {
     setName(name);
   };
 
-  const { displayAge, age, handleSubmit, handleChange } = useAgeForm();
+  const { displayAge, age, handleClick, handleChange } = useAgeForm();
 
   return (
     <section className="example">
@@ -23,7 +23,7 @@ export default function Example1() {
           value={!displayAge ? '' : displayAge}
           onChange={handleChange}
         />
-        <button type="submit" onSubmit={handleSubmit}>
+        <button type="button" onClick={handleClick}>
           Submit
         </button>
       </form>

@@ -4,10 +4,11 @@ export const useAgeForm = callback => {
   const [displayAge, setDisplayAge] = useState(0);
   const [age, setAge] = useState(0);
 
-  // manage submit event
-  const handleSubmit = e => {
+  // manage click event
+  const handleClick = e => {
     e.preventDefault();
-    setAge(e.target.value);
+    setAge(e.target.form[0].value);
+    setDisplayAge(0);
   };
 
   // manage change event
@@ -18,7 +19,7 @@ export const useAgeForm = callback => {
   return {
     displayAge,
     age,
-    handleSubmit,
+    handleClick,
     handleChange
   };
 };
